@@ -1,0 +1,49 @@
+site_name: "[Seu Projeto - FastAPI]"
+repo_url: https://github.com/mgrb/fastapi_app_boilerplate
+repo_name: mgrb/fastapi_app_boilerplate
+
+# Theme
+theme:
+    name: material
+    icon:
+        repo: fontawesome/brands/github
+    features:
+        - navigation.sections
+        - content.code.copy
+    palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+# Markdown extensions
+markdown_extensions:
+    - abbr
+    - attr_list
+    - toc:
+        permalink: true
+    - pymdownx.highlight
+    - pymdownx.superfences
+    - pymdownx.tasklist
+    - pymdownx.emoji
+    - pymdownx.magiclink
+    - pymdownx.smartsymbols
+    - pymdownx.tilde
+    - pymdownx.caret
+    - pymdownx.mark
+    - pymdownx.details
+    - pymdownx.keys
+    - pymdownx.blocks.admonition
+    - pymdownx.tabbed:
+        alternate_style: true
+    - tables

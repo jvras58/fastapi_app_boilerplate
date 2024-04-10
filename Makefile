@@ -6,3 +6,6 @@ venv:
 
 start:
 	poetry run python src/main.py
+
+show_docs:
+	poetry run mkdocs serve
