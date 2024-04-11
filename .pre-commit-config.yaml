@@ -1,7 +1,5 @@
 repos:
 - hooks:
   - id: conventional-gitmoji
-    # stages:
-    # - push
-  repo: https://github.com/ljnsn/cz-conventional-gitmoji #https://github.com/commitizen-tools/commitizen
-  rev: v0.2.4 #v3.22.0
+  repo: https://github.com/ljnsn/cz-conventional-gitmoji 
+  rev: v0.2.4

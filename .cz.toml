@@ -1,5 +1,5 @@
 [tool.commitizen]
-name = "cz_conventional_commits"
+name = "cz_gitmoji"             # "cz_conventional_commits"
 tag_format = "$version"
 version_scheme = "semver"
 version_provider = "poetry"

@@ -46,6 +46,25 @@ files = [
 test = ["coverage", "mypy", "pexpect", "ruff", "wheel"]
 
 [[package]]
+name = "attrs"
+version = "23.2.0"
+description = "Classes Without Boilerplate"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "attrs-23.2.0-py3-none-any.whl", hash = "sha256:99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1"},
+    {file = "attrs-23.2.0.tar.gz", hash = "sha256:935dc3b529c262f6cf76e50877d35a4bd3c1de194fd41f47a2b7ae8f19971f30"},
+]
+
+[package.extras]
+cov = ["attrs[tests]", "coverage[toml] (>=5.3)"]
+dev = ["attrs[tests]", "pre-commit"]
+docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope-interface"]
+tests = ["attrs[tests-no-zope]", "zope-interface"]
+tests-mypy = ["mypy (>=1.6)", "pytest-mypy-plugins"]
+tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist[psutil]"]
+
+[[package]]
 name = "babel"
 version = "2.14.0"
 description = "Internationalization utilities"
@@ -292,6 +311,22 @@ files = [
 
 [package.extras]
 toml = ["tomli"]
+
+[[package]]
+name = "cz-conventional-gitmoji"
+version = "0.2.4"
+description = "A commitizen plugin that combines gitmoji and conventional."
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "cz_conventional_gitmoji-0.2.4-py3-none-any.whl", hash = "sha256:83b88a6f95424bb0f9527631d53a48eb07dc68f1410db36cd20b32adaad65c07"},
+    {file = "cz_conventional_gitmoji-0.2.4.tar.gz", hash = "sha256:ecb0bdb6bb2c0aff4cdedaebcb11dcebe83073bf2b72751a129e444a58573690"},
+]
+
+[package.dependencies]
+attrs = ">=23.1.0,<24.0.0"
+commitizen = ">=3.2.2,<4.0.0"
+setuptools = {version = "*", markers = "python_version >= \"3.12\""}
 
 [[package]]
 name = "decli"
@@ -1483,4 +1518,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "06d0086ce38a28fa331d256686cefbc30c20a20841ae536a34fdbd50a4afe959"
+content-hash = "0eefa52009012679760c3ce5276e0594403e4ae91d02c1e6735f2021542c4a29"
