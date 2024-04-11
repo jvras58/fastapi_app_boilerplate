@@ -12,3 +12,6 @@ show_docs:
 
 init_repo:
 	@git flow init -df
+
+test_all:
+	task test_all

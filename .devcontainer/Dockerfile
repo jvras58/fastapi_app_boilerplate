@@ -8,6 +8,10 @@ RUN apk update && apk add --no-cache \
     openssh \
     pipx \
     make \
+    gcc \
+    python3-dev \
+    musl-dev \
+    linux-headers \
     && adduser -D -s /bin/zsh -u 1000 stilabs 
 
 USER stilabs

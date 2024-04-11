@@ -3,7 +3,7 @@
 from contextlib import asynccontextmanager
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -27,6 +27,12 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*'],
 )
+
+
+@app.get('/', status_code=status.HTTP_200_OK)
+def get_root() -> dict:
+    """Método GET para a ROOT da API."""
+    return {'msg': 'Bem Vindo ao ROOT da API'}
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 # where to look for source files
-src = ["src"]
+src = ["src", "tests"]
 
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -35,12 +35,25 @@ exclude = [
 line-length = 80
 indent-width = 4
 
+[lint.flake8-quotes]
+inline-quotes = "single"
+
 [lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
 # Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
 # McCabe complexity (`C901`) by default.
 select = ['ALL']
-ignore = ['INP001', 'ANN101', 'T201', 'Q000', 'TD003', 'D401']
+ignore = [
+    'INP001',
+    'ANN101',
+    'T201',
+    'Q000',
+    'TD003',
+    'D401',
+    'S101',
+    'D211',
+    'D213',
+]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
@@ -52,6 +65,7 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 [format]
 # Use single quotes for non-triple-quoted strings.
 quote-style = "single"
+
 
 # Like Black, indent with spaces, rather than tabs.
 indent-style = "space"
