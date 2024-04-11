@@ -1,0 +1,6 @@
+@host = localhost
+@port = 8888
+
+### GET / (Home)
+GET http://{{host}}:{{port}}/
+Content-Type: application/json

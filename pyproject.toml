@@ -27,9 +27,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.pytest.ini_options]
 pythonpath = "."
 
-[tool.ruff]
-config = "ruff.toml"
-
 [tool.taskipy.tasks]
 lint = 'ruff check'
 format = 'ruff format'
