@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
+from src.communs.message_schema import MessageSchema
 
 
 @asynccontextmanager
@@ -29,10 +30,15 @@ app.add_middleware(
 )
 
 
-@app.get('/', status_code=status.HTTP_200_OK)
-def get_root() -> dict:
+@app.get('/', status_code=status.HTTP_200_OK, response_model=MessageSchema)
+def get_root() -> MessageSchema:
     """Método GET para a ROOT da API."""
-    return {'msg': 'Bem Vindo ao ROOT da API'}
+    return MessageSchema(
+        id=1,
+        type='success',
+        sumary='API is running',
+        message='API is running',
+    )
 
 
 if __name__ == '__main__':
