@@ -14,7 +14,7 @@ init_repo:
 	@git flow init -df
 
 test_all:
-	@task test_all
+	@poetry run task test_all
 
 commit_all:
-	@git add . && cz commit 
+	@git add . && poetry run cz commit 
