@@ -17,4 +17,4 @@ test_all:
 	@poetry run task test_all
 
 commit_all:
-	@git add . && poetry run cz commit 
+	@git status -s && git add . && poetry run cz commit
