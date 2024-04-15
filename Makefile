@@ -23,3 +23,4 @@ commit:
 	@echo "========================="
 	@echo -n "Are you sure? [y/N] " && read ans && [ $${ans:-N} == y ]
 	@git add . && poetry run cz commit
+	
