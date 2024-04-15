@@ -5,13 +5,17 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
-from src.communs.message_schema import MessageSchema
+
+from communs.message_schema import MessageSchema
+from config.settings import get_settings
 
 
 @asynccontextmanager
 async def life_span(app: FastAPI) -> any:  # noqa: ARG001
     """Load and clean up restaurantes data."""
     print('Starting application')
+    print('Loading settings')
+    print(get_settings().model_dump)
     yield
     print('Shooting down application')
 

@@ -1,6 +1,6 @@
 """Message schema module."""
 
-from src.communs.base_model_schema import BaseModelSchema
+from communs.base_model_schema import BaseModelSchema
 
 
 class MessageSchema(BaseModelSchema):
