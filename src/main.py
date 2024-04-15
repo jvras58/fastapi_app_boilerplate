@@ -5,8 +5,10 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 
 from communs.message_schema import MessageSchema
+from config.custom_log import log_middleware
 from config.settings import get_settings
 
 
@@ -32,6 +34,8 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*'],
 )
+
+app.add_middleware(BaseHTTPMiddleware, dispatch=log_middleware)
 
 
 @app.get('/', status_code=status.HTTP_200_OK, response_model=MessageSchema)

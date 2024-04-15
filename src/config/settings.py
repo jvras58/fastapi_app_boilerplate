@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     model_config: str = SettingsConfigDict(
         env_file='.env',
         env_file_encoding='utf-8',
+        secrets_dir='secrets',
     )
 
     ENVIROMENT: str

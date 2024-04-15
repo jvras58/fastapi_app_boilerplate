@@ -12,6 +12,7 @@ fastapi = "^0.110.1"
 uvicorn = "^0.29.0"
 pydantic = { extras = ["email"], version = "^2.7.0" }
 pydantic-settings = "^2.2.1"
+rich = "^13.7.1"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.3.5"
