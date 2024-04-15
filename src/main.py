@@ -9,17 +9,16 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from communs.message_schema import MessageSchema
 from config.custom_log import log_middleware
-from config.settings import get_settings
+from config.settings import get_logger, get_settings
 
 
 @asynccontextmanager
-async def life_span(app: FastAPI) -> any:  # noqa: ARG001
+async def life_span(app: FastAPI) -> any:
     """Load and clean up restaurantes data."""
-    print('Starting application')
-    print('Loading settings')
-    print(get_settings().model_dump)
+    get_logger().info('Loading settings')
+    get_logger().debug(get_settings().model_dump_json())
     yield
-    print('Shooting down application')
+    get_logger().info('Shooting down application')
 
 
 app = FastAPI(lifespan=life_span)
