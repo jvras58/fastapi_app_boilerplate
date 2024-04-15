@@ -16,5 +16,10 @@ init_repo:
 test_all:
 	@poetry run task test_all
 
-commit_all:
-	@git status -s && git add . && poetry run cz commit
+commit:
+	@echo "Changes to be committed:"
+	@echo "========================="
+	@git status -s 
+	@echo "========================="
+	@echo -n "Are you sure? [y/N] " && read ans && [ $${ans:-N} == y ]
+	@git add . && poetry run cz commit
