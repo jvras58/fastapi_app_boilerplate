@@ -19,6 +19,11 @@ class Settings(BaseSettings):
 
     ENVIROMENT: str
     LOG_LEVEL: str
+    DB_URL: str
+    SECURITY_ACCESS_TOKEN_EXPIRE_MINUTES: int
+    SECURITY_ALGORITHM: str
+    # SECRETS
+    SECURITY_API_SECRET_KEY: str
 
     def build_logger(self) -> Logger:
         """Build logger."""
@@ -26,7 +31,9 @@ class Settings(BaseSettings):
             '[%X]' if self.ENVIROMENT == 'development' else '[%Y-%m-%d %X]'
         )
         logging.basicConfig(
-            level=getattr(logging, self.LOG_LEVEL),
+            #FIXME: Porque não ta conseguindo pegar o log_level do env?
+            # level=getattr(logging, self.LOG_LEVEL),  # noqa: ERA001
+            level=getattr(logging, 'WARNING'),  # noqa: B009
             format='%(message)s',
             datefmt=datefmt_str,
             handlers=[RichHandler()],
