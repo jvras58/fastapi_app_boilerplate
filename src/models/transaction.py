@@ -9,7 +9,10 @@ from communs.base_model import AbstractBaseModel
 if TYPE_CHECKING:
     from models.authorization import Authorization
 
+from config.table_registry import table_registry
 
+
+@table_registry.mapped_as_dataclass
 class Transaction(AbstractBaseModel):
     """Representa a tabela de Trasações do sistema."""
 

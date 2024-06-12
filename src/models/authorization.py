@@ -10,7 +10,10 @@ if TYPE_CHECKING:
     from models.role import Role
     from models.transaction import Transaction
 
+from config.table_registry import table_registry
 
+
+@table_registry.mapped_as_dataclass
 class Authorization(AbstractBaseModel):
     """Representa a autorização de um papel (Role) a uma operação (Transaction)."""  # noqa: E501
 

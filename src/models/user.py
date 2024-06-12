@@ -9,7 +9,10 @@ from communs.base_model import AbstractBaseModel
 if TYPE_CHECKING:
     from models.assignment import Assignment
 
+from config.table_registry import table_registry
 
+
+@table_registry.mapped_as_dataclass
 class User(AbstractBaseModel):
     """Representa a tabela Usuário no banco de dados."""
 
@@ -28,3 +31,8 @@ class User(AbstractBaseModel):
         Index('idx_user_username', username, unique=True),
         Index('idx_user_email', email, unique=True),
     )
+    def __init__(self, **kwargs: dict) -> None:
+        """Initialize the model."""
+        super().__init__(**kwargs)
+        for attr, value in kwargs.items():
+            setattr(self, attr, value)

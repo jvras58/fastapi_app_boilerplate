@@ -10,7 +10,10 @@ if TYPE_CHECKING:
     from models.assignment import Assignment
     from models.authorization import Authorization
 
+from config.table_registry import table_registry
 
+
+@table_registry.mapped_as_dataclass
 class Role(AbstractBaseModel):
     """Representa a tabela de Perfil de usuário (Role)."""
 

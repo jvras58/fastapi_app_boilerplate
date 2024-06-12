@@ -1,16 +1,22 @@
-"""Config Alembic."""
-
 import importlib
+import logging
+import os
+import sys
 from logging.config import fileConfig
 
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 from src.config.settings import get_settings
 
+# Set up logging
+logging.basicConfig()
+logger = logging.getLogger('alembic.env')
+logger.setLevel(logging.INFO)
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-config.set_main_option('sqlalchemy.url', get_settings().DB_URL)
+config.set_main_option("sqlalchemy.url", get_settings().DB_URL)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -19,31 +25,28 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-# from myapp import mymodel  # noqa: ERA001
-# target_metadata = mymodel.Base.metadata  # noqa: ERA001
-from src.communs.base_model import Base  # noqa: E402
 
-#FIXME: Ainda não to conseguindo encontrar os models
-app_models = [
-    'src.models.user',
-    'models.role',
-    'models.transaction',
-    'models.assignment',
-    'models.authorization',
-]
+sys.path.append('/workspace/src') # add the project root to the path
+from config.table_registry import table_registry  # noqa: E402
 
-for module in app_models:
-    try:
-        loaded_module = importlib.import_module(module)
-    except ModuleNotFoundError:  # noqa: PERF203
-        print(f'Could not import module {module}')  # TODO: log this
+# -----------------------------
+# Load all entities from the model package
+entities_directory = '/workspace/src/models'
+files = os.listdir(entities_directory)
+# Filtra apenas os arquivos .py
+modules = [f[:-3] for f in files if f.endswith('.py') and not f.startswith('__')]
+# Importa os módulos
+for module in modules:
+    module_path = f"models.{module}"
+    importlib.import_module(module_path)
+    print(f"Module {module_path} imported.")
+# -----------------------------
+target_metadata = table_registry.metadata
 
-target_metadata = Base.metadata
-target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
-# my_important_option = config.get_main_option("my_important_option")  # noqa: ERA001, E501
+# my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
 
@@ -59,12 +62,12 @@ def run_migrations_offline() -> None:
     script output.
 
     """
-    url = config.get_main_option('sqlalchemy.url')
+    url = config.get_main_option("sqlalchemy.url")
     context.configure(
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,
-        dialect_opts={'paramstyle': 'named'},
+        dialect_opts={"paramstyle": "named"},
     )
 
     with context.begin_transaction():
@@ -80,14 +83,13 @@ def run_migrations_online() -> None:
     """
     connectable = engine_from_config(
         config.get_section(config.config_ini_section, {}),
-        prefix='sqlalchemy.',
+        prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection,
-            target_metadata=target_metadata,
+            connection=connection, target_metadata=target_metadata
         )
 
         with context.begin_transaction():

@@ -10,7 +10,10 @@ if TYPE_CHECKING:
     from models.role import Role
     from models.user import User
 
+from config.table_registry import table_registry
 
+
+@table_registry.mapped_as_dataclass
 class Assignment(AbstractBaseModel):
     """Representa a tabela de Assignment (Designações) de usuários.
     Essas designações determinam qual o papel (Role) o usuário assume para o sistema.
@@ -30,3 +33,9 @@ class Assignment(AbstractBaseModel):
     role: Mapped['Role'] = relationship(back_populates='assignments', lazy='subquery')  # noqa: E501
 
     __table_args__ = (Index('idx_user_role', user_id, role_id, unique=True),)
+
+    def __init__(self, **kwargs: dict) -> None:
+        """Initialize the model."""
+        super().__init__(**kwargs)
+        for attr, value in kwargs.items():
+            setattr(self, attr, value)
